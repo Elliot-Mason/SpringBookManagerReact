@@ -1,0 +1,15 @@
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px; /* Limit the width to 4 columns (4 * 150px + 3 * 20px gap) */
+    margin: 0 auto; /* Center the grid */
+}
+
+.no-books-message {
+    grid-column: 1 / -1; /* Span all columns */
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+}
