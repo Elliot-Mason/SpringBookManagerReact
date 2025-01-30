@@ -1,19 +1,19 @@
 import React from 'react';
-import Book from '../Book/Book';
 import './BookList.css';
+import Book from '../Book/Book';
 
-const BookList = ({ books = [] }) => {
-    console.log("Books prop in BookList:", books); // Log the books prop
-
+const BookList = ({ books, hoveredBook, setHoveredBook }) => {
     return (
         <div className="book-list">
-            {books.length === 0 ? (
-                <div className="no-books-message">No books available</div>
-            ) : (
-                books.map((book, index) => (
-                    <Book key={index} title={book.bookTitle} rating={book.rating} />
-                ))
-            )}
+            {books.map((book, index) => (
+                <Book 
+                    key={index} 
+                    book={book} 
+                    isHovered={hoveredBook === index} 
+                    onMouseEnter={() => setHoveredBook(index)} 
+                    onMouseLeave={() => setHoveredBook(null)}
+                />
+            ))}
         </div>
     );
 };

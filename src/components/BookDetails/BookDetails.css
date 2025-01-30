@@ -1,0 +1,11 @@
+.book-details {
+    position: fixed;
+    left: 160px; /* Adjust this value to position the details to the side */
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure this is higher than other elements */
+}

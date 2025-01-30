@@ -1,12 +1,13 @@
 .book-item {
     position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* Maintain square aspect ratio */
+    width: 150px;
+    height: 150px;
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    z-index: 1; /* Ensure this is lower than the book details component */
 }
 
 .book-info {
@@ -29,3 +30,4 @@
     font-weight: bold;
     color: #ffcc00; /* Example color for rating */
 }
+

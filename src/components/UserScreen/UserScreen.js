@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserScreen.css';
 import BookList from '../BookList/BookList';
 
 const UserScreen = ({ customerBooks }) => {
-    console.log("customerBooks in UserScreen:", customerBooks); // Log the customerBooks prop
+    const [hoveredBook, setHoveredBook] = useState(null);
 
     return (
         <div className="user-screen">
             <h2>Your Books</h2>
-            <BookList books={customerBooks}/> 
+            <BookList 
+                books={customerBooks} 
+                hoveredBook={hoveredBook} 
+                setHoveredBook={setHoveredBook} 
+            />
         </div>
     );
 };
