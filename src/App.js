@@ -27,7 +27,6 @@ class App extends React.Component {
 
     render() {
         const { showLoginModal, loggedIn, topBook, customerBooks } = this.state;
-        console.log("customerbooks:", customerBooks); // Log the current state
         return (
             <div>
                 <NavBar 
@@ -37,6 +36,7 @@ class App extends React.Component {
                 />
                 {!loggedIn ? (<HomeScreen topBook={topBook} />) : (<UserScreen 
                     customerBooks={customerBooks}
+                    token={this.state.token}
                     onEditClick={() => this.setState({ showEditModal: true })}
                 />)}
                 {showLoginModal && <LoginModal onClose={() => handleCloseLoginModal(this.setState.bind(this))} onLogin={(username, password) => handleLogin(username, password, this.setState.bind(this))} />}

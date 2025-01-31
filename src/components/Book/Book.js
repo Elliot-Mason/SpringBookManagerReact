@@ -2,7 +2,11 @@ import React from 'react';
 import './Book.css';
 import BookDetails from '../BookDetails/BookDetails';
 
-const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons }) => {
+const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons, token, handleDelete }) => {
+    const handleDeleteClick = () => {
+        handleDelete(book.id);
+    };
+
     return (
         <div 
             className="book-item" 
@@ -22,8 +26,8 @@ const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons }) => {
             </div>
             {showIcons && (
                 <div className="icons">
-                    <span className="icon edit-icon">+</span>
-                    <span className="icon delete-icon">-</span> 
+                    <button className="icon edit-icon">+</button>
+                    <button className="icon delete-icon" onClick={handleDeleteClick}>-</button> 
                 </div>
             )}
             {isHovered && <BookDetails book={book} />}

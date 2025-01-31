@@ -25,6 +25,14 @@
     cursor: pointer;
 }
 
+.edit-books-button.active {
+    background-color: #ff0000; /* Active color: red */
+}
+
 .edit-books-button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Hover color for default state */
+}
+
+.edit-books-button.active:hover {
+    background-color: #cc0000; /* Hover color for active state */
 }

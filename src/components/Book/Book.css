@@ -73,8 +73,8 @@
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%; /* Make the icons circular */
-    width: 30px; /* Set a fixed width */
-    height: 30px; /* Set a fixed height */
+    width: 15px; /* Set a fixed width */
+    height: 15px; /* Set a fixed height */
     display: flex;
     justify-content: center;
     align-items: center;

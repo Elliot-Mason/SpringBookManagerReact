@@ -53,7 +53,16 @@ export const handleAddBook = (book, token, setState) => {
 export const handleEditBook = (book, token, setState) => {
 }
 
-export const handleDeleteBook = (book, token, setState) => {
-}
-
-
+export const handleDeleteBook = (id, token) => {
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    return axios
+        .delete(`http://localhost:8081/springProject/userbooks/${id}`, { headers })
+        .then((response) => {
+            console.log("Deleted book", response.data); // Log the response
+            return response.data;
+        })
+        .catch((error) => {
+            console.error("Error deleting book:", error); // Log the error
+            throw error;
+        });
+};
