@@ -2,7 +2,7 @@ import React from 'react';
 import './Book.css';
 import BookDetails from '../BookDetails/BookDetails';
 
-const Book = ({ book, isHovered, onMouseEnter, onMouseLeave }) => {
+const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons }) => {
     return (
         <div 
             className="book-item" 
@@ -10,9 +10,22 @@ const Book = ({ book, isHovered, onMouseEnter, onMouseLeave }) => {
             onMouseLeave={onMouseLeave}
         >
             <div className="book-info">
-                <p className="book-title">{book.bookTitle}</p>
-                <p className="book-rating">{book.rating}</p>
+                <div className="book-info-column">
+                    <p className="book-title">{book.bookTitle}</p>
+                </div>
+                <div className="book-info-column">
+                    <div className="book-rating-upper"></div>
+                    <div className="book-rating-lower">
+                        <p className="book-rating">{book.rating}</p>
+                    </div>
+                </div>
             </div>
+            {showIcons && (
+                <div className="icons">
+                    <span className="icon edit-icon">+</span>
+                    <span className="icon delete-icon">-</span> 
+                </div>
+            )}
             {isHovered && <BookDetails book={book} />}
         </div>
     );

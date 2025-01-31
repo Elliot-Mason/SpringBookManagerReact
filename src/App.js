@@ -35,7 +35,10 @@ class App extends React.Component {
                     onLogoutClick={() => handleLogout(this.setState.bind(this))}
                     loggedIn={loggedIn}
                 />
-                {!loggedIn ? (<HomeScreen topBook={topBook} />) : (<UserScreen customerBooks={customerBooks} />)}
+                {!loggedIn ? (<HomeScreen topBook={topBook} />) : (<UserScreen 
+                    customerBooks={customerBooks}
+                    onEditClick={() => this.setState({ showEditModal: true })}
+                />)}
                 {showLoginModal && <LoginModal onClose={() => handleCloseLoginModal(this.setState.bind(this))} onLogin={(username, password) => handleLogin(username, password, this.setState.bind(this))} />}
             </div>
         );

@@ -21,3 +21,6 @@ button {
   cursor: pointer;
 }
 
+UserScreen {
+  z-index: 1;
+}

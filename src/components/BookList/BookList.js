@@ -2,7 +2,7 @@ import React from 'react';
 import './BookList.css';
 import Book from '../Book/Book';
 
-const BookList = ({ books, hoveredBook, setHoveredBook }) => {
+const BookList = ({ books, hoveredBook, setHoveredBook, showIcons }) => {
     return (
         <div className="book-list">
             {books.map((book, index) => (
@@ -12,6 +12,7 @@ const BookList = ({ books, hoveredBook, setHoveredBook }) => {
                     isHovered={hoveredBook === index} 
                     onMouseEnter={() => setHoveredBook(index)} 
                     onMouseLeave={() => setHoveredBook(null)}
+                    showIcons={showIcons} // Pass the showIcons prop to Book
                 />
             ))}
         </div>

@@ -10,24 +10,80 @@
     z-index: 1; /* Ensure this is lower than the book details component */
 }
 
-.book-info {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
+.book-info-column {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
+.book-info {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    bottom: 0; /* Position at the bottom */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a background color for better visibility */
+}
+
+.book-rating-upper {
+    flex: 1;
+}
+
+.book-rating-lower {
+    display: flex;
+    align-items: flex-end;
+}
+
 .book-title {
-    font-size: 1em;
+    font-size: 0.8em; /* Adjust the font size to make it smaller */
     font-weight: bold;
+    margin: 0;
+}
+
+.book-rating-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .book-rating {
-    font-size: 1em;
+    font-size: 0.8em; /* Adjust the font size to make it smaller */
     font-weight: bold;
     color: #ffcc00; /* Example color for rating */
 }
 
+.icons {
+    position: absolute;
+    top: 5px; /* Adjust this value to position the icons vertically */
+    right: 5px; /* Adjust this value to position the icons horizontally */
+    display: flex;
+    gap: 5px;
+    z-index: 10; /* Ensure this is higher than the book component */
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%; /* Make the icons circular */
+    width: 30px; /* Set a fixed width */
+    height: 30px; /* Set a fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-icon {
+    color: red;
+}
+
+.edit-icon {
+    color: blue;
+}
