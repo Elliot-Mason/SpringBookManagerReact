@@ -4,25 +4,43 @@
     align-items: center;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 640px; /* Adjust this value to match the width of the 4 books grid */
+    margin-top: 10px;
+}
+
+.header h2 {
+    margin: 0;
+}
+
 .book-list-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+    width: 640px; /* Adjust this value to match the width of the 4 books grid */
 }
 
-.edit-books-button {
+.buttons-container {
+    display: flex;
+    flex-direction: row; /* Ensure buttons are placed next to each other */
+    justify-content: flex-start;
+    gap: 10px; /* Add some space between the buttons */
     margin-top: 10px;
-    align-self: flex-start;
-    position: absolute;
-    top: calc(100% + 10px); /* Position below the book list */
-    left: calc(150px * 4 + 30px); /* Adjust this value to position the button below the 4th column */
+}
+
+.edit-books-button, .sort-books-button {
     padding: 10px 20px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.edit-books-button {
+    background-color: #007bff; /* Default color: blue */
 }
 
 .edit-books-button.active {
@@ -33,6 +51,10 @@
     background-color: #0056b3; /* Hover color for default state */
 }
 
-.edit-books-button.active:hover {
-    background-color: #cc0000; /* Hover color for active state */
+.sort-books-button {
+    background-color: #007bff; /* Default color: green */
+}
+
+.sort-books-button:hover {
+    background-color: #0056b3; /* Hover color for default state */
 }

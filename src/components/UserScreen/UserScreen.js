@@ -6,17 +6,39 @@ const UserScreen = ({ customerBooks, token }) => {
     const [hoveredBook, setHoveredBook] = useState(null);
     const [showIcons, setShowIcons] = useState(false); // State to manage the visibility of the icons
     const [books, setBooks] = useState(customerBooks); // State to manage the list of books
+    const [sortOrder, setSortOrder] = useState('asc');
 
     useEffect(() => {
         console.log("customerBooks prop:", customerBooks); // Log the customerBooks prop
         setBooks(customerBooks); // Ensure books state is updated when customerBooks prop changes
     }, [customerBooks]);
 
+    useEffect(() => {
+        sortBooks(sortOrder);
+    }, [sortOrder, customerBooks]);
+
+    const sortBooks = (order) => {
+        const sortedBooks = [...books].sort((a, b) => {
+            if (order === 'asc') {
+                return a.rating - b.rating;
+            } else {
+                return b.rating - a.rating;
+            }
+        });
+        setBooks(sortedBooks);
+    };
+
+    const toggleSortOrder = () => {
+        setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+    };
+
     console.log("books state:", books); // Log the books state
 
     return (
         <div className="user-screen">
-            <h2>Your Books</h2>
+            <div className="header">
+                <h2>Your Books</h2>
+            </div>
             <div className="book-list-container">
                 <BookList 
                     books={books} 
@@ -26,12 +48,20 @@ const UserScreen = ({ customerBooks, token }) => {
                     showIcons={showIcons} // Pass the showIcons state to BookList
                     token={token} // Pass the token to BookList
                 />
-                <button 
-                    className={`edit-books-button ${showIcons ? 'active' : ''}`} 
-                    onClick={() => setShowIcons(!showIcons)}
-                >
-                    Toggle Edit
-                </button>
+                <div className="buttons-container">
+                    <button 
+                        className={`edit-books-button ${showIcons ? 'active' : ''}`} 
+                        onClick={() => setShowIcons(!showIcons)}
+                    >
+                        Toggle Edit
+                    </button>
+                    <button 
+                        className="sort-books-button" 
+                        onClick={toggleSortOrder}
+                    >
+                        Sort: {sortOrder === 'asc' ? 'ASC' : 'DESC'}
+                    </button>
+                </div>
             </div>
         </div>
     );
