@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './UserScreen.css';
 import BookList from '../BookList/BookList';
+import EditModal from '../EditModal/EditModal';
 
 const UserScreen = ({ customerBooks, token }) => {
     const [hoveredBook, setHoveredBook] = useState(null);
     const [showIcons, setShowIcons] = useState(false); // State to manage the visibility of the icons
-    const [books, setBooks] = useState(customerBooks); // State to manage the list of books
-    const [sortOrder, setSortOrder] = useState('asc');
+    const [books, setBooks] = useState([]); // Initialize with an empty array
+    const [sortOrder, setSortOrder] = useState('asc'); // State to manage the sorting order
+    const [showEditModal, setShowEditModal] = useState(false); // State to manage the visibility of the edit modal
 
     useEffect(() => {
         console.log("customerBooks prop:", customerBooks); // Log the customerBooks prop
@@ -14,22 +16,27 @@ const UserScreen = ({ customerBooks, token }) => {
     }, [customerBooks]);
 
     useEffect(() => {
-        sortBooks(sortOrder);
-    }, [sortOrder, customerBooks]);
+        if (books.length > 0) {
+            setBooks(sortBooks(books, sortOrder));
+        }
+    }, [sortOrder]);
 
-    const sortBooks = (order) => {
-        const sortedBooks = [...books].sort((a, b) => {
+    const sortBooks = (books, order) => {
+        return [...books].sort((a, b) => {
             if (order === 'asc') {
                 return a.rating - b.rating;
             } else {
                 return b.rating - a.rating;
             }
         });
-        setBooks(sortedBooks);
     };
 
     const toggleSortOrder = () => {
         setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+    };
+
+    const handleEditClick = () => {
+        setShowEditModal(true);
     };
 
     console.log("books state:", books); // Log the books state
@@ -47,6 +54,7 @@ const UserScreen = ({ customerBooks, token }) => {
                     setHoveredBook={setHoveredBook} 
                     showIcons={showIcons} // Pass the showIcons state to BookList
                     token={token} // Pass the token to BookList
+                    onEditClick={handleEditClick} // Pass the handleEditClick function to BookList
                 />
                 <div className="buttons-container">
                     <button 
@@ -63,6 +71,11 @@ const UserScreen = ({ customerBooks, token }) => {
                     </button>
                 </div>
             </div>
+            {showEditModal && 
+                <EditModal 
+                    onClose={() => setShowEditModal(false)} 
+                />
+            }
         </div>
     );
 };

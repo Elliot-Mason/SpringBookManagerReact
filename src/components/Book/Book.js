@@ -2,9 +2,13 @@ import React from 'react';
 import './Book.css';
 import BookDetails from '../BookDetails/BookDetails';
 
-const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons, token, handleDelete }) => {
+const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons, onEditClick, handleDelete }) => {
     const handleDeleteClick = () => {
         handleDelete(book.id);
+    };
+
+    const handleEditClick = () => {
+        onEditClick(book);
     };
 
     return (
@@ -26,7 +30,7 @@ const Book = ({ book, isHovered, onMouseEnter, onMouseLeave, showIcons, token, h
             </div>
             {showIcons && (
                 <div className="icons">
-                    <button className="icon edit-icon">+</button>
+                    <button className="icon edit-icon" onClick={handleEditClick}>+</button>
                     <button className="icon delete-icon" onClick={handleDeleteClick}>-</button> 
                 </div>
             )}

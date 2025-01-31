@@ -47,9 +47,6 @@ export const handleCloseLoginModal = (setState) => {
     setState({ showLoginModal: false });
 };
 
-export const handleAddBook = (book, token, setState) => {
-}
-
 export const handleEditBook = (book, token, setState) => {
 }
 

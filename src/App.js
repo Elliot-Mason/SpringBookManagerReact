@@ -1,5 +1,4 @@
 // Filename - App.js
-
 import React from "react";
 import NavBar from "./components/NavBar/NavBar"; // Navigation bar
 import LoginModal from "./components/LoginModal/LoginModal"; // Login modal
@@ -37,7 +36,6 @@ class App extends React.Component {
                 {!loggedIn ? (<HomeScreen topBook={topBook} />) : (<UserScreen 
                     customerBooks={customerBooks}
                     token={this.state.token}
-                    onEditClick={() => this.setState({ showEditModal: true })}
                 />)}
                 {showLoginModal && <LoginModal onClose={() => handleCloseLoginModal(this.setState.bind(this))} onLogin={(username, password) => handleLogin(username, password, this.setState.bind(this))} />}
             </div>

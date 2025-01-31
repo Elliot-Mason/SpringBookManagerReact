@@ -3,7 +3,7 @@ import './BookList.css';
 import Book from '../Book/Book';
 import { handleDeleteBook } from '../../eventHandlers';
 
-const BookList = ({ books, setBooks, hoveredBook, setHoveredBook, showIcons, token }) => {
+const BookList = ({ books, setBooks, hoveredBook, setHoveredBook, showIcons, token, onEditClick }) => {
     const handleDelete = (id) => {
         handleDeleteBook(id, token)
             .then(() => {
@@ -26,6 +26,7 @@ const BookList = ({ books, setBooks, hoveredBook, setHoveredBook, showIcons, tok
                     showIcons={showIcons} // Pass the showIcons prop to Book
                     token={token} // Pass the token to Book
                     handleDelete={handleDelete} // Pass the handleDelete function to Book
+                    onEditClick={onEditClick} // Pass the onEditClick function to Book
                 />
             ))}
         </div>
