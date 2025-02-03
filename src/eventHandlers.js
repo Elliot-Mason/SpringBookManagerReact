@@ -35,6 +35,21 @@ export const handleLogin = (username, password, setState) => {
     });
 };
 
+export const handleSave = (id, notes, rating, token) => {
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    const updatedBook = { id, notes, rating }; // Create an object with the updated book information
+    return axios
+        .put(`http://localhost:8081/springProject/userbooks/update`, updatedBook, { headers })
+        .then(response => {
+            console.log("Updated book", response.data); // Log the response
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Error updating book:", error); // Log the error
+            throw error;
+        });
+};
+
 export const handleLogout = (setState) => {
     setState({
         token: null,

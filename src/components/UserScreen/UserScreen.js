@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './UserScreen.css';
 import BookList from '../BookList/BookList';
 import EditModal from '../EditModal/EditModal';
+import { handleSave } from '../../eventHandlers';
 
 const UserScreen = ({ customerBooks, token }) => {
     const [hoveredBook, setHoveredBook] = useState(null);
@@ -9,6 +10,7 @@ const UserScreen = ({ customerBooks, token }) => {
     const [books, setBooks] = useState([]); // Initialize with an empty array
     const [sortOrder, setSortOrder] = useState('asc'); // State to manage the sorting order
     const [showEditModal, setShowEditModal] = useState(false); // State to manage the visibility of the edit modal
+    const [selectedBook, setSelectedBook] = useState(null); // State to manage the selected book for editing
 
     useEffect(() => {
         console.log("customerBooks prop:", customerBooks); // Log the customerBooks prop
@@ -35,11 +37,28 @@ const UserScreen = ({ customerBooks, token }) => {
         setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
 
-    const handleEditClick = () => {
-        setShowEditModal(true);
+    const handleEditClick = (book) => {
+        setSelectedBook(book); // Set the selected book
+        setShowEditModal(true); // Show the edit modal
     };
 
-    console.log("books state:", books); // Log the books state
+    const handleSaveWrapper = (notes, rating) => {
+        console.log("Pre save Selected book:", selectedBook, "Notes:", notes, "Rating:", rating);
+        const updatedBook = { ...selectedBook, notes, rating };
+        setBooks(prevBooks => prevBooks.map(book => book.id === updatedBook.id ? updatedBook : book));
+        setShowEditModal(false);
+        console.log("Post save Selected book:", updatedBook);
+    
+        // Call the handleSave function
+        handleSave(updatedBook.id, notes, rating, token)
+            .then((updatedBookFromServer) => {
+                console.log("Updated book from server:", updatedBookFromServer);
+            })
+            .catch((error) => {
+                console.error("Error saving book:", error);
+            });
+    };
+    
 
     return (
         <div className="user-screen">
@@ -74,6 +93,8 @@ const UserScreen = ({ customerBooks, token }) => {
             {showEditModal && 
                 <EditModal 
                     onClose={() => setShowEditModal(false)} 
+                    onSave={handleSaveWrapper} 
+                    book={selectedBook} // Pass the selected book to the EditModal
                 />
             }
         </div>
