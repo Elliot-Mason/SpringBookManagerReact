@@ -29,6 +29,7 @@
     justify-content: flex-start;
     gap: 10px; /* Add some space between the buttons */
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .edit-books-button, .sort-books-button {

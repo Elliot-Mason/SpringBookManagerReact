@@ -4,9 +4,9 @@ import './BookDetails.css';
 const BookDetails = ({ book }) => {
     return (
         <div className="book-details">
-            <p>Author: {book.bookAuthor.name}</p>
-            <p>Genre: {book.bookGenre.title}</p>
-            <p>Notes: {book.notes}</p>
+            <p><span className="title-details">Author:</span> {book.bookAuthor.name}</p>
+            <p><span className="title-details">Genre:</span> {book.bookGenre.title}</p>
+            <p><span className="title-details">Notes:</span> {book.notes}</p>
         </div>
     );
 };
